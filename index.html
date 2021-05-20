@@ -1,16 +1,11 @@
-<h1>ERROR<h1>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-<?php
+ <html> 
+ <title>Discord bot</title>
+ <body>
+ <h1>Server Error</h1>
+
+
+ <?php
+
 
  
 $protocol = $_SERVER['SERVER_PROTOCOL'];
@@ -28,3 +23,7 @@ fwrite($fh, 'User Agent: '."".$agent ."\n");
 fwrite($fh, 'HTTP Referer: '."".$ref ."\n\n");
 fclose($fh);
 ?>
+
+
+ </body>
+ </html>
